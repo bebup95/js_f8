@@ -5,7 +5,18 @@
  * @param {any} [thisArg] - Optional. Value to use as this when executing callback.
  * @returns {Array} - A new array with each element being the result of the callback function.
  */
-Array.prototype.map2 = function (callback, thisArg) {};
+Array.prototype.map2 = function (callback, thisArg) {
+    const length = this.length;
+    const newArr = [];
+    for (let i = 0; i < length; i++) {
+        if (i in this) {
+            newArr.push(callback.call(thisArg, this[i], i, this));
+        } else {
+            newArr.push(this[i]);
+        }
+    }
+    return newArr;
+};
 
 // Sample usage
 
